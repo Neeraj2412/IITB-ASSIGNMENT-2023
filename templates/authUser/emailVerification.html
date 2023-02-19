@@ -1,0 +1,24 @@
+{% extends 'baseAssets/baseRequired.html' %}
+
+{% block bodyContent-noOffSet %}
+    <div class="container">
+        <div class="text-center">
+            <h1 class="text-danger">
+                Click The Button To Activate The Account
+            </h1>
+            <form method="POST" action="">
+                {% csrf_token %}
+                <input type="text" class="set-url" value="" name="url" >
+                <button class="btn p-4 btn-primary mt-4 set-url" type="submit" value="">Verify</button>
+            </form>
+        </div>
+    </div>
+    <script>
+        $('.document').ready(function(){
+            var url =  window.location.href;
+            var urlSplit = url.split('/');
+            var url_token = urlSplit[4];
+            $('.set-url').val(url_token);
+        });
+    </script>
+{% endblock bodyContent-noOffSet %}{
