@@ -1,0 +1,38 @@
+{% extends 'baseAssets/baseRequired.html' %}
+
+
+{% block navcontent %}
+<style>
+    body {
+        background-color: aliceblue;
+    }
+</style>
+{% include 'baseAssets/navBar.html' %}
+
+
+
+{% endblock navcontent %}
+{% block bodyContent-noOffSet %}
+{% load widget_tweaks %}
+<div class="container mt-5">
+    <div class="col">
+        <div class="card shadow border-0 p-3">
+            <h3 class="text-center text-capitalize">Create <span class="text-primary"> blog post</span></h3>
+            <div class="col">
+                <form action="" method="POST">
+                    {% csrf_token %}
+                    <!-- {{ form.as_ul }} -->
+                        {% render_field form.title class="form-control mt-3"  placeholder="Blog Title" %}
+                        {% render_field form.imageUrl class="form-control mt-3"  placeholder="Image Url" %}
+                        {% render_field form.description class="form-control mt-3"  placeholder="Description" %}
+                        {% render_field form.content class="form-control mt-3"  placeholder="Content" %}
+                    <div class="col text-center">
+                        <button type="submi" class="btn btn-danger mt-3 py-1 px-5">Submit</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+    </div>
+</div>
+{% endblock bodyContent-noOffSet %}

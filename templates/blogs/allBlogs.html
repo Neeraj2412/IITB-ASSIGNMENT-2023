@@ -24,17 +24,17 @@
 {% endif %}
 </div>
 <div class="container mt-5">
-    <h1 class="text-center text-capitalize">Top headlines from <span class="text-primary">TechCrunch right now</span>
+    <h1 class="text-center text-capitalize">Top Platform<span class="text-primary"> Blogs right now</span>
     </h1>
     <div class="row">
         <div class="col row mt-5">
-            {% for i in articles %}
+            {% for i in data %}
             <div class="col-md-6 mt-4">
                 <a href="{{ i.url }}
                 ">
                     <div class="card border-0 shadow p-3 h-100">
                         <div class="col"
-                            style="background-image: url('{{ i.urlToImage }}');min-height: 400px;max-height: 400px;background-size: cover;background-position: center;">
+                            style="background-image: url('{{ i.imageUrl }}');min-height: 400px;max-height: 400px;background-size: cover;background-position: center;">
 
                         </div>
                         <div class="mt-3">

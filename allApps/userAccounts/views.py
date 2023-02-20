@@ -9,6 +9,7 @@ from django.conf import settings
 from django.http import HttpResponse, HttpResponseRedirect
 from .forms import *
 from .models import *
+from ..blogs.models import *
 import requests
 import uuid
 
@@ -38,6 +39,7 @@ def verifyUser(request, auth_token):
     
     return render(request, 'authUser/emailVerification.html')
 
+
 def registerUser(request):
     form  = userRegistrationForm()
     if request.method == 'POST':
@@ -66,8 +68,6 @@ def registerUser(request):
     }
     return render(request, "authUser/userRegistration.html", context)
 
-
-
 def userLogin(request):
     form = loginForm()
     if request.method == 'POST':
@@ -93,6 +93,10 @@ def userLogin(request):
     }
     return render(request, "authUser/userLogin.html", context)
 
+@login_required(login_url='user-login')
+def logoutUser(request):
+    logout(request)
+    return redirect('user-login')
 
 @login_required(login_url='user-login')
 def home(request):
@@ -100,8 +104,20 @@ def home(request):
     response = requests.get(url)
     data = response.json()
     articles = data['articles']
+    user = request.user
     context = {
         'data' : data,
-        'articles' : articles
+        'articles' : articles,
+        'user'     : user
     }
     return render(request, "index.html", context)
+
+
+def userProfile(request):
+    user = request.user
+    data = blogs.objects.all()
+    context = {
+        'user': user,
+        'data': data
+    }
+    return render(request, 'userProfile.html', context)
