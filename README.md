@@ -32,3 +32,23 @@ I. Web app development
             2. CRUD operation only admin can perform created using django-rest-framework
             |
             -> endpoint http://127.0.0.1:8000/blogs/blog_api/     
+  
+  NOTE: In this project because, I am not processicing much of data, we are using sqlite
+        -we can use the 
+        ->sudo mysql;
+        ->mysql -u root -p;
+        ->CREATE USER 'neeraj'@'localhost' IDENTIFIED BY 'password';
+        ->GRANT PRIVILEGE ON database_nme.table_name TO 'neeraj'@'host';
+        ->GRANT ALL PRIVILEGES ON *.* TO 'neeraj'@'localhost' WITH GRANT OPTION;
+        
+        In Settings.py we can configure the database
+          DATABASES = {
+            'default': {
+                'ENGINE': 'django.db.backends.mysql',
+                'NAME': 'iitb_assignment',
+                'USER': 'root',
+                'PASSWORD': '******',
+                'HOST': 'hostname',
+                'PORT': '3306',
+            }
+          }
